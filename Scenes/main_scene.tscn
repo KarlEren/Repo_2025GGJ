@@ -1,0 +1,177 @@
+[gd_scene load_steps=16 format=3 uid="uid://b1rl57r1a2bbg"]
+
+[ext_resource type="Script" path="res://Scripts/UI/main_scene.gd" id="1_a5hvb"]
+[ext_resource type="PackedScene" uid="uid://c7hdts0re3v3n" path="res://Scenes/san_bubble.tscn" id="2_jfjpn"]
+[ext_resource type="PackedScene" uid="uid://1masco1vs1qx" path="res://Scenes/enemy.tscn" id="2_qfvgg"]
+[ext_resource type="AudioStream" uid="uid://cswo0c5v3jttm" path="res://Assets/Music/坂部剛 - ヒュドラム (UT-M21).mp3" id="3_mbonl"]
+[ext_resource type="FontFile" uid="uid://yk7rqv1lm3um" path="res://Assets/Font/汇文明朝体.otf" id="3_oh18k"]
+[ext_resource type="PackedScene" uid="uid://dhyxtqc5wmn78" path="res://Scenes/character.tscn" id="6_3oe4y"]
+[ext_resource type="Texture2D" uid="uid://66u8k3wbxm3r" path="res://Assets/BackGround/B1.jpg" id="7_nimde"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2p1ku"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_faub1"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xtu0q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a2h5g"]
+
+[sub_resource type="Animation" id="Animation_s67f2"]
+resource_name = "End"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect_Red:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.694118, 0.160784, 0.129412, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qb2kt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect_Red:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.694118, 0.160784, 0.129412, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gugh5"]
+resource_name = "turn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect_Red:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.694118, 0.160784, 0.129412, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1eygj"]
+_data = {
+"End": SubResource("Animation_s67f2"),
+"RESET": SubResource("Animation_qb2kt"),
+"turn": SubResource("Animation_gugh5")
+}
+
+[node name="Main_Scene" type="Node2D"]
+script = ExtResource("1_a5hvb")
+enemy = ExtResource("2_qfvgg")
+
+[node name="Timer_Count" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="Timer_SpawnEnemy" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="CanvasLayer_UI" type="CanvasLayer" parent="."]
+
+[node name="Label_TickCount" type="Label" parent="CanvasLayer_UI"]
+offset_left = 78.0
+offset_top = -2.0
+offset_right = 165.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("3_oh18k")
+theme_override_font_sizes/font_size = 80
+
+[node name="Label_SanValue" type="Label" parent="CanvasLayer_UI"]
+offset_left = 986.0
+offset_right = 1026.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_oh18k")
+theme_override_font_sizes/font_size = 80
+
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("7_nimde")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(11.765, 1)
+zoom = Vector2(1.55, 1.55)
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer_player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mbonl")
+autoplay = true
+parameters/looping = true
+
+[node name="Timer_ShowLeftTime" type="Timer" parent="."]
+autostart = true
+
+[node name="SAN_Bubble" parent="." instance=ExtResource("2_jfjpn")]
+position = Vector2(-35, 7)
+scale = Vector2(0.1, 0.1)
+health = 15
+
+[node name="character" parent="." instance=ExtResource("6_3oe4y")]
+position = Vector2(234, 6)
+scale = Vector2(0.2, 0.2)
+move_speed = 400.0
+
+[node name="Timer_ChangeImage" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="StaticBody2D_Left" type="StaticBody2D" parent="."]
+position = Vector2(-317, 27)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Left"]
+shape = SubResource("WorldBoundaryShape2D_2p1ku")
+
+[node name="StaticBody2D_Right" type="StaticBody2D" parent="."]
+position = Vector2(312, 32)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Right"]
+shape = SubResource("WorldBoundaryShape2D_faub1")
+
+[node name="StaticBody2D_Up" type="StaticBody2D" parent="."]
+position = Vector2(0, -112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Up"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_xtu0q")
+
+[node name="StaticBody2D_Down" type="StaticBody2D" parent="."]
+position = Vector2(0, 241)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D_Down"]
+shape = SubResource("WorldBoundaryShape2D_a2h5g")
+
+[node name="ColorRect_Red" type="ColorRect" parent="."]
+offset_left = -638.0
+offset_top = -368.0
+offset_right = -566.0
+offset_bottom = -328.0
+scale = Vector2(18, 18)
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer_Red" type="AnimationPlayer" parent="."]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_1eygj")
+}
+
+[connection signal="timeout" from="Timer_Count" to="." method="_on_game_win"]
+[connection signal="timeout" from="Timer_SpawnEnemy" to="." method="_on_spawn_enemy"]
+[connection signal="timeout" from="Timer_ShowLeftTime" to="." method="_on_timer_show_left_time_timeout"]
+[connection signal="timeout" from="Timer_ChangeImage" to="." method="_on_timer_change_image_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cswo0c5v3jttm"
+path="res://.godot/imported/坂部剛 - ヒュドラム (UT-M21).mp3-cae7ef04120d789231d1a36e762d9654.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/坂部剛 - ヒュドラム (UT-M21).mp3"
+dest_files=["res://.godot/imported/坂部剛 - ヒュドラム (UT-M21).mp3-cae7ef04120d789231d1a36e762d9654.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

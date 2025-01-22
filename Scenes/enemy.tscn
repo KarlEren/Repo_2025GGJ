@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://1masco1vs1qx"]
+
+[ext_resource type="Script" path="res://Scripts/UI/enemy.gd" id="1_c3lm1"]
+[ext_resource type="Texture2D" uid="uid://c7tvfouam34h5" path="res://Assets/Sprites/enemy.PNG" id="2_il1h1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5kn"]
+atlas = ExtResource("2_il1h1")
+region = Rect2(0, 0, 439, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rotgx"]
+atlas = ExtResource("2_il1h1")
+region = Rect2(439, 0, 439, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1lrs"]
+atlas = ExtResource("2_il1h1")
+region = Rect2(878, 0, 439, 800)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5l08r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rotgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1lrs")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tl42"]
+
+[node name="Enemy" type="Area2D" groups=["Enemy", "enemy"]]
+script = ExtResource("1_c3lm1")
+
+[node name="AnimatedSprite2D_Enemy" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_5l08r")
+animation = &"Death"
+
+[node name="CollisionShape2D_Enemy" type="CollisionShape2D" parent="."]
+position = Vector2(3, -8)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_7tl42")

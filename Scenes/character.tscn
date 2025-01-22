@@ -1,0 +1,348 @@
+[gd_scene load_steps=37 format=3 uid="uid://dhyxtqc5wmn78"]
+
+[ext_resource type="Script" path="res://Scripts/角色/玩家角色/character.gd" id="1_yvch4"]
+[ext_resource type="Texture2D" uid="uid://6usm2i4tckgi" path="res://Assets/Sprites/PlayerAnim.png" id="2_dkggi"]
+[ext_resource type="Script" path="res://Scripts/角色/玩家角色/状态管理器.gd" id="3_cepl1"]
+[ext_resource type="Script" path="res://Scripts/角色/玩家角色/行走状态.gd" id="4_gdm3b"]
+[ext_resource type="Script" path="res://Scripts/角色/玩家角色/攻击状态.gd" id="5_sr13o"]
+[ext_resource type="Texture2D" uid="uid://ccjyygeacelmg" path="res://Assets/Sprites/Attack2.png" id="6_8i3js"]
+[ext_resource type="Texture2D" uid="uid://brjrc1hhhu56a" path="res://Assets/Sprites/Attack1.png" id="7_dquaj"]
+[ext_resource type="AudioStream" uid="uid://lte53ghcgxlx" path="res://Assets/Music/攻击音效.mp3" id="8_etutb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh34y"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1796, 760, 548, 584)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf65t"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(150, 68, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yssd3"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(703, 68, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnrx7"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1256, 68, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7abak"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1809, 68, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctnrl"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(150, 702, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82asw"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(703, 702, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy2kr"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1256, 702, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugp7o"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1809, 702, 553, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x43uv"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(152, 3321, 562, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8xsq"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(714, 3321, 562, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1b3p"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(169, 1336, 560, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdbib"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(729, 1336, 560, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8fi3"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1289, 1336, 560, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t61ij"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1849, 1336, 560, 634)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp8yo"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(167, 2613, 552, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6wyo"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(719, 2613, 552, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bovc"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(183, 1955, 551, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ollun"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(734, 1955, 551, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic8nh"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1285, 1955, 551, 629)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayt4c"]
+atlas = ExtResource("2_dkggi")
+region = Rect2(1836, 1955, 551, 629)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wt8be"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh34y")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf65t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yssd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnrx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7abak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctnrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82asw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy2kr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugp7o")
+}],
+"loop": true,
+"name": &"向下移动",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x43uv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8xsq")
+}],
+"loop": true,
+"name": &"向右攻击",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1b3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdbib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8fi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t61ij")
+}],
+"loop": true,
+"name": &"向右移动",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp8yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6wyo")
+}],
+"loop": true,
+"name": &"向左攻击",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bovc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ollun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic8nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayt4c")
+}],
+"loop": true,
+"name": &"向左移动",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0m7mc"]
+
+[sub_resource type="Animation" id="Animation_yvv04"]
+resource_name = "向右攻击"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"向右攻击", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FSM/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"BeginAttack"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FSM")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"change_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3g84v"]
+resource_name = "向左攻击"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"向左攻击", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FSM/Attack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"BeginAttack"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FSM")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0],
+"method": &"change_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_sxrkf"]
+resource_name = "走路"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfv8y"]
+_data = {
+"向右攻击": SubResource("Animation_yvv04"),
+"向左攻击": SubResource("Animation_3g84v"),
+"走路": SubResource("Animation_sxrkf")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ko6j"]
+
+[node name="character" type="CharacterBody2D"]
+position = Vector2(554, 254)
+script = ExtResource("1_yvch4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wt8be")
+animation = &"向左攻击"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0m7mc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_cepl1")
+
+[node name="Run" type="Node" parent="FSM"]
+script = ExtResource("4_gdm3b")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("5_sr13o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yfv8y")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(8, 8)
+shape = SubResource("CircleShape2D_7ko6j")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+visible = false
+position = Vector2(268, 4)
+texture = ExtResource("6_8i3js")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(292, 4)
+rotation = 3.14159
+texture = ExtResource("7_dquaj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-876, -544)
+scale = Vector2(7.834, 5.727)
+polygon = PackedVector2Array(116.436, 37.8082, 152, 63, 157, 104, 145, 135, 115.727, 148.001)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_etutb")
